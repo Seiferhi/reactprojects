@@ -21,7 +21,7 @@ class AchatComponent extends Component {
         </section>
         {/* Map Ends */}
         {/* Search */}
-        <section className="property-query-area padding_bottom">
+        <section className="property-query-area padding_bottom" style={{ marginTop: '219px', background: '#edf3f8' }}>
           <div className="container">
             <div className="row">
               <div className="col-sm-12 text-center">

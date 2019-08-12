@@ -14,16 +14,16 @@ class LocationComponent extends Component {
           <div className="container-fluid">
             <h3 className="hidden">hiden</h3>
             <div className="row property-list-area property-list-map-area">
-              <div className="property-list-map"> 
+              <div className="property-list-map">
                 {/* <div id="property-listing-map" className="multiple-location-map" style={{width: '100%', height: '545px'}} /> */}
-                <MapContainer/>
+                <MapContainer />
               </div>
             </div>
           </div>
         </section>
         {/* Map Ends */}
         {/* Search */}
-        <section className="property-query-area padding_bottom">
+        <section className="property-query-area padding_bottom" style={{ marginTop: '219px', background: '#edf3f8' }}>
           <div className="container">
             <div className="row">
               <div className="col-sm-12 text-center">
@@ -151,7 +151,7 @@ class LocationComponent extends Component {
           </ul> */}
           <PaginationSimple />
         </div>
-      </div>
+      </div >
     );
   }
 }

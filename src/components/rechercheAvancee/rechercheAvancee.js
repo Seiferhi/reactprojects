@@ -41,14 +41,14 @@ class RechercheAvancee extends Component {
   render() {
     return (
       <div>
-        <ul>
+        {/* <ul>
           Juste pour les test :
           {
             this.props.listes.map(el => {
               return <li> titre : {el.titre} , region : {el.region} , categorie : {el.categorie} , prix : {el.prix}</li>
             })
           }
-        </ul>
+        </ul> */}
         <form className="callus col-xs-12" onSubmit={e => { e.preventDefault(); }}  >
           <div className="col-md-3 col-sm-6">
             <div className="form-group">
