@@ -8,12 +8,12 @@ class Horizontal extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      value: 10
+      value: 100
     }
   }
 
   handleChangeStart = () => {
-    console.log('Change event started')
+    // console.log('Change event started')
   };
 
   handleChange = value => {
@@ -23,7 +23,7 @@ class Horizontal extends Component {
   };
 
   handleChangeComplete = () => {
-    console.log('Change event completed')
+    this.props.sliderChange(this.state.value);
   };
 
   render() {

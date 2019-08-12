@@ -14,8 +14,12 @@ class RechercheAvancee extends Component {
 
     this.state = {
       titre: '', region: '', categorie: '', statut: '', minLit: '',
-      salleDeBain: '', surfaceMin: '', surfaceMax: ''
+      salleDeBain: '', surfaceMin: '', surfaceMax: '', prix: 100
     }
+  }
+
+  sliderChange(value) {
+    this.setState({ prix: value });
   }
 
   handleInputChange = (event) => {
@@ -41,7 +45,7 @@ class RechercheAvancee extends Component {
           Juste pour les test :
           {
             this.props.listes.map(el => {
-              return <li> titre : {el.titre} , region : {el.region} , categorie : {el.categorie}</li>
+              return <li> titre : {el.titre} , region : {el.region} , categorie : {el.categorie} , prix : {el.prix}</li>
             })
           }
         </ul>
@@ -193,7 +197,7 @@ class RechercheAvancee extends Component {
             <div className="col-md-8">
               <div className="single-query-slider">
                 {/* slider */}
-                <Horizontal />
+                <Horizontal sliderChange={value => this.sliderChange(value)} />
               </div>
             </div>
             <div className="col-md-4 text-right form-group">
