@@ -194,7 +194,7 @@ class Home extends Component {
               </div>
             </div>
             <div className="row">
-              <RechercheAvancee search={(key) => this.searchkey(key)} />
+              <RechercheAvancee />
             </div>
             <div className="group-button-search">
               <a href="plus.html" className="more-filter">

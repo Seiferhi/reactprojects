@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MapContainer from "./../google-map/googleMap";
+import RechercheAvancee from '../rechercheAvancee/rechercheAvancee';
 
 
 class AchatComponent extends Component {
@@ -11,9 +12,9 @@ class AchatComponent extends Component {
           <div className="container-fluid">
             <h3 className="hidden">hiden</h3>
             <div className="row property-list-area property-list-map-area">
-              <div className="property-list-map"> 
+              <div className="property-list-map">
                 {/* <div id="property-listing-map" className="multiple-location-map" style={{width: '100%', height: '545px'}} /> */}
-                <MapContainer/>
+                <MapContainer />
               </div>
             </div>
           </div>
@@ -29,145 +30,7 @@ class AchatComponent extends Component {
               </div>
             </div>
             <div className="row">
-              <form className="callus">
-                <div className="col-md-3 col-sm-6">
-                  <div className="single-query form-group">
-                    <input type="text" className="keyword-input" placeholder="Mot clé" />
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6">
-                  <div className="single-query form-group">
-                    <div className="intro">
-                      <select>
-                        <option>Toutes Les Régions</option>
-                        <option>Ariana </option>
-                        <option>Beja</option>
-                        <option>Ben Arous</option>
-                        <option>Bizerte</option>
-                        <option>Gabes</option>
-                        <option>Gafsa</option>
-                        <option>Jendouba</option>
-                        <option>Kairouan</option>
-                        <option>Kasserine</option>
-                        <option>Kebili</option>
-                        <option>Kef</option>
-                        <option>Mahdia</option>
-                        <option>Mannouba</option>
-                        <option>Medenine</option>
-                        <option>Monastir</option>
-                        <option>Nabeul</option>
-                        <option>Sfax</option>
-                        <option>Sidi Bouzid</option>
-                        <option>Siliana</option>
-                        <option>Sousse</option>
-                        <option>Tataouine</option>
-                        <option>Touzeur</option>
-                        <option>Tunis</option>
-                        <option>Zaghouan</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6">
-                  <div className="single-query form-group">
-                    <div className="intro">
-                      <select>
-                        <option className="active">Toutes les Catégories</option>
-                        <option>Appartement</option>
-                        <option>Bureau</option>
-                        <option>Local Commerciale</option>
-                        <option>Maison </option>
-                        <option>Résidence</option>
-                        <option>Terre/Terrain</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6">
-                  <div className="single-query form-group">
-                    <div className="intro">
-                      <select>
-                        <option> Statut de bien</option>
-                        <option>Acheter</option>
-                        <option>Louer </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6"style={{    marginLeft:" -292px"
-}}>
-                  <div className="row search-2">
-                    <div className="col-md-6 col-sm-6">
-                      <div className="single-query form-group">
-                        <div className="intro">
-                          <select>
-                            <option className="active">Min Lits</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-6 col-sm-6">
-                      <div className="single-query form-group">
-                        <div className="intro">
-                          <select>
-                            <option className="active">Salle de bain</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6"style={{    width: "299px"  , marginLeft: "-4px",
-    marginRight: "-3px"}}>
-                  <div className="row">
-                    <div className="col-sm-6">
-                      <div className="single-query form-group">
-                        <input type="text" className="keyword-input" placeholder="Surface Min(m²)" />
-                      </div>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="single-query form-group">
-                        <input type="text" className="keyword-input" placeholder="Surface Max(m²)" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="row">
-                    <div className="col-md-8 bottom15">
-                      <div className="single-query-slider">
-                        <label>Échelle des prix:</label>
-                        <div className="price text-right">
-                          <span>DT</span>
-                          <div className="leftLabel" />
-                          <span > À DT</span>
-                          <div className="rightLabel" />
-                        </div>
-                        <div data-range_min={0} data-range_max={1000000} data-cur_min={0} data-cur_max={1500000} className="nstSlider">
-                          <div className="bar" />
-                          <div className="leftGrip" />
-                          <div className="rightGrip" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-4 text-right form-group">
-                      <button type="submit" className="btn-blue border_radius">Recherche</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
+              < RechercheAvancee />
             </div>
             <div className="group-button-search">
               <a href="plus.html" className="more-filter">
