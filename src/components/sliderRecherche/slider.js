@@ -5,7 +5,7 @@ import Slider from "react-rangeslider";
 import "./slider.css"
 
 class Horizontal extends Component {
-  constructor (props, context) {
+  constructor(props, context) {
     super(props, context)
     this.state = {
       value: 10
@@ -26,18 +26,18 @@ class Horizontal extends Component {
     console.log('Change event completed')
   };
 
-  render () {
+  render() {
     const { value } = this.state
     return (
       <div className='slider'>
         <div className="price text-right">
-                                    
-                  <div className='value'>
-{value} <span>DT</span></div>
-                  
-                  
-                </div>
-        
+
+          <div className='value'>
+            {value} <span>DT</span></div>
+
+
+        </div>
+
         <Slider
           min={100}
           max={100000000}
@@ -46,7 +46,7 @@ class Horizontal extends Component {
           onChange={this.handleChange}
           onChangeComplete={this.handleChangeComplete}
         />
-       
+
       </div>
     )
   }

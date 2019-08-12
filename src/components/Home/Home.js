@@ -68,12 +68,12 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      myListe:myList
-      }
+      myListe: myList
+    }
   }
-  searchkey=(key)=>{
-    this.setState({keyword: key})
-    this.setState({myListe:myList.filter((el,index)=>el.titre.toLowerCase().indexOf(key.toLowerCase())>-1)})
+  searchkey = (key) => {
+    // this.setState({ keyword: key })
+    this.setState({ myListe: myList.filter(el => el.titre.toLowerCase().indexOf(key.toLowerCase()) > -1) }, console.log(this.state.myListe))
   }
   render() {
     return (
@@ -185,7 +185,7 @@ class Home extends Component {
           </div>
         </div>
         {/* Property Search area Start */}
-        <section className="property-query-area bg_light" style={{display: 'none'}}>
+        <section className="property-query-area bg_light" style={{ display: 'none' }}>
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
@@ -194,7 +194,7 @@ class Home extends Component {
               </div>
             </div>
             <div className="row">
-              <RechercheAvancee search={(key)=>this.searchkey(key)}/>
+              <RechercheAvancee search={(key) => this.searchkey(key)} />
             </div>
             <div className="group-button-search">
               <a href="plus.html" className="more-filter">
@@ -271,8 +271,8 @@ class Home extends Component {
                 </p>
               </div>
             </div>
-           
-            <ItemList liste={this.state.myListe}/>
+
+            <ItemList liste={this.state.myListe} />
             <div className="row">
               <div className="col-md-12 text-center top15">
                 <ul className="pager">
@@ -295,12 +295,12 @@ class Home extends Component {
               </div>
             </div>
             <div className="row">
-              
-                 <ListMeilleurBien/>
-                </div>
-             
-          
-            
+
+              <ListMeilleurBien />
+            </div>
+
+
+
           </div>
         </section>
         {/*Best Deal Properties Ends*/}
@@ -316,9 +316,9 @@ class Home extends Component {
               </div>
             </div>
             <div className="row">
-            <ListeBienRecomande/>
-            </div> 
-           
+              <ListeBienRecomande />
+            </div>
+
           </div>
         </section>
         {/*Featured Property Ends*/}
@@ -365,17 +365,17 @@ class Home extends Component {
           </div>
         </section>
         {/*testinomial collepse*/}
-         <div className="cd-testimonials-all">
+        <div className="cd-testimonials-all">
           <div className="cd-testimonials-all-wrapper">
             <ul>
-               <ListeClientsSatisfaits/>
+              <ListeClientsSatisfaits />
             </ul>
             <a href="#0" className="close-btn">Close</a>
           </div>
-         
-        </div> 
 
-        
+        </div>
+
+
         {/*Partners*/}
         <section id="logos">
           <div className="container partners padding_top">
@@ -426,6 +426,6 @@ class Home extends Component {
     );
   }
 }
- 
+
 export default Home;
 
