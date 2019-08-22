@@ -7,6 +7,8 @@ import ListMeilleurBien from '../listMeilleurBien/listMeilleurBien';
 import ListeBienRecomande from './../listeBienRecomande/listeBienRecomande';
 import ListeClientsSatisfaits from './../listeClientsSatisfait/listeClientsSatisfait';
 import RechercheAvancee from './../rechercheAvancee/rechercheAvancee';
+import Chat from './../chatbot/chatbot';
+
 var myList = [
   {
     titre: "Unique Beach",
@@ -421,6 +423,8 @@ class Home extends Component {
             </div>
           </div>
         </section>
+        
+        <Chat/>
 
       </div>
     );

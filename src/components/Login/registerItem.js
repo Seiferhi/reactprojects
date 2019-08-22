@@ -1,21 +1,54 @@
 import React, { Component } from "react";
-
+import axios from "axios";
 class Register extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      nom: "",
+      adresse: "",
+      tel: "",
+      email: "",
+      motDepasse: "",
+      motDepasse2: "",
+      errors: {}
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const client = {
+      userName: this.state.nom,
+      userAdress: this.state.adresse,
+      userTel: this.state.tel,
+      userEmail: this.state.email,
+      userMotDepasse: this.state.motDepasse,
+      userMotDepasse2: this.state.motDepasse2
+    };
+
+    axios
+      .post("http://localhost:8080//register", client)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="agent-p-form">
-        <form className="callus clearfix">
+        <form className="callus clearfix" onSubmit={this.onSubmit}>
           <div className="single-query col-sm-12 form-group">
             <label>Nom && prenom </label>
             <input
               type="text"
               className="keyword-input"
               placeholder="Nom && prenom"
-              required
+              value={this.state.userName}
+              onChange={this.onChange}
             />
           </div>
           <div className="single-query col-sm-12 form-group">
@@ -24,7 +57,8 @@ class Register extends Component {
               type="text"
               className="keyword-input"
               placeholder="Adresse"
-              required
+              value={this.state.userAdress}
+              onChange={this.onChange}
             />
           </div>
           <div className="single-query col-sm-12 form-group">
@@ -33,7 +67,8 @@ class Register extends Component {
               type="text"
               className="keyword-input"
               placeholder="Tel"
-              required
+              value={this.state.userTel}
+              onChange={this.onChange}
             />
           </div>
           <div className="single-query col-sm-12 form-group">
@@ -42,6 +77,8 @@ class Register extends Component {
               type="text"
               className="keyword-input"
               placeholder="Email Address"
+              value={this.state.userEmail}
+              onChange={this.onChange}
             />
           </div>
           <div className="single-query col-sm-12 form-group">
@@ -50,6 +87,8 @@ class Register extends Component {
               type="password"
               className="keyword-input"
               placeholder="Password"
+              value={this.state.userMotDepasse}
+              onChange={this.onChange}
             />
           </div>
           <div className="single-query col-sm-12 form-group">
@@ -58,7 +97,8 @@ class Register extends Component {
               type="password"
               className="keyword-input"
               placeholder="Confirm  Password"
-              readOnly
+              value={this.state.userMotDepasse2}
+              onChange={this.onChange}
             />
           </div>
           <div className="search-form-group white col-sm-12 form-group text-left">
@@ -75,6 +115,7 @@ class Register extends Component {
                 type="submit"
                 defaultValue="Creat an Account"
                 className="btn-slide"
+                
               />
             </div>
           </div>
