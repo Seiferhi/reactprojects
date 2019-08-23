@@ -27,8 +27,8 @@ class Register extends Component {
       adress: this.state.adresse,
       tel: this.state.tel,
       email: this.state.email,
-      otDepasse: this.state.motDepasse,
-      motDepasse2: this.state.motDepasse2
+      motDePasse: this.state.motDepasse,
+      motDePasse2: this.state.motDepasse2
     };
 
     axios
@@ -47,7 +47,7 @@ class Register extends Component {
               type="text"
               className="keyword-input"
               placeholder="Nom && prenom"
-              value={this.state.userName}
+              value={this.state.nom}
               onChange={this.onChange}
               name="nom"
             />
@@ -58,7 +58,7 @@ class Register extends Component {
               type="text"
               className="keyword-input"
               placeholder="Adresse"
-              value={this.state.userAdress}
+              value={this.state.adress}
               onChange={this.onChange}
               name="adresse"
             />
@@ -69,7 +69,7 @@ class Register extends Component {
               type="text"
               className="keyword-input"
               placeholder="Tel"
-              value={this.state.userTel}
+              value={this.state.tel}
               onChange={this.onChange}
               name="tel"
             />
@@ -80,7 +80,7 @@ class Register extends Component {
               type="text"
               className="keyword-input"
               placeholder="Email Address"
-              value={this.state.userEmail}
+              value={this.state.email}
               onChange={this.onChange}
               name="email"
             />
@@ -91,7 +91,7 @@ class Register extends Component {
               type="password"
               className="keyword-input"
               placeholder="Password"
-              value={this.state.userMotDepasse}
+              value={this.state.motDepasse}
               onChange={this.onChange}
               name="motDepasse"
             />
@@ -102,7 +102,7 @@ class Register extends Component {
               type="password"
               className="keyword-input"
               placeholder="Confirm  Password"
-              value={this.state.userMotDepasse2}
+              value={this.state.motDepasse2}
               onChange={this.onChange}
               name="motDepasse2"
             />
