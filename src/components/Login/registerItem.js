@@ -23,18 +23,18 @@ class Register extends Component {
     e.preventDefault();
 
     const client = {
-      userName: this.state.nom,
-      userAdress: this.state.adresse,
-      userTel: this.state.tel,
-      userEmail: this.state.email,
-      userMotDepasse: this.state.motDepasse,
-      userMotDepasse2: this.state.motDepasse2
+      nom: this.state.nom,
+      adress: this.state.adresse,
+      tel: this.state.tel,
+      email: this.state.email,
+      otDepasse: this.state.motDepasse,
+      motDepasse2: this.state.motDepasse2
     };
 
     axios
-      .post("http://localhost:8080//register", client)
+      .post("http://localhost:8080/clients/register", client)
       .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.response.data));
   }
 
   render() {
@@ -49,6 +49,7 @@ class Register extends Component {
               placeholder="Nom && prenom"
               value={this.state.userName}
               onChange={this.onChange}
+              name="nom"
             />
           </div>
           <div className="single-query col-sm-12 form-group">
@@ -59,6 +60,7 @@ class Register extends Component {
               placeholder="Adresse"
               value={this.state.userAdress}
               onChange={this.onChange}
+              name="adresse"
             />
           </div>
           <div className="single-query col-sm-12 form-group">
@@ -69,6 +71,7 @@ class Register extends Component {
               placeholder="Tel"
               value={this.state.userTel}
               onChange={this.onChange}
+              name="tel"
             />
           </div>
           <div className="single-query col-sm-12 form-group">
@@ -79,6 +82,7 @@ class Register extends Component {
               placeholder="Email Address"
               value={this.state.userEmail}
               onChange={this.onChange}
+              name="email"
             />
           </div>
           <div className="single-query col-sm-12 form-group">
@@ -89,6 +93,7 @@ class Register extends Component {
               placeholder="Password"
               value={this.state.userMotDepasse}
               onChange={this.onChange}
+              name="motDepasse"
             />
           </div>
           <div className="single-query col-sm-12 form-group">
@@ -99,6 +104,7 @@ class Register extends Component {
               placeholder="Confirm  Password"
               value={this.state.userMotDepasse2}
               onChange={this.onChange}
+              name="motDepasse2"
             />
           </div>
           <div className="search-form-group white col-sm-12 form-group text-left">
@@ -115,7 +121,7 @@ class Register extends Component {
                 type="submit"
                 defaultValue="Creat an Account"
                 className="btn-slide"
-                
+
               />
             </div>
           </div>
