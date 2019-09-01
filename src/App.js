@@ -18,6 +18,7 @@ import Autre from "./components/Autre/Autre";
 import Reclamation from "./components/Reclamation/Reclamation";
 import Agents from "./components/Agents/Agents";
 import ProfilAgent from "./components/ProfilAgent/ProfilAgent";
+import ReactBot from "./components/reactBot/reactBot";
 
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -45,7 +46,7 @@ class App extends Component {
           <Route path="/reclamation" component={Reclamation} />
           <Route path="/agents" component={Agents} />
           <Route path="/profilAgent" component={ProfilAgent} />
-
+          <Route path="/reactBot" component={ReactBot} />
           <Footer />
         </div>
       </BrowserRouter>

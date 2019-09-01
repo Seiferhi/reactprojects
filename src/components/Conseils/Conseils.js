@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Conseils.css";
-import ListConseil from "./listConseil";
+import FormulaireConseil from "./formulaireConseil";
 
 class Conseils extends Component {
   render() {
@@ -75,77 +75,8 @@ class Conseils extends Component {
                 </div>
 
                 <div className="row">
-                  {/* <div className="col-sm-6 bottom40">
-                    <h2 className="text-uppercase bottom20">Contact Agent</h2>
-                    <form className="callus">
-                      <label>
-                        <h4>Nom & prénom :</h4>
-                      </label>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Nom & prénom"
-                          style={{ width: " 500px;" }}
-                        />
-                      </div>
-                      <label>
-                        <h4>Téléphone :</h4>
-                      </label>
-                      <div className="form-group">
-                        <input
-                          type="tel"
-                          className="form-control"
-                          placeholder="Téléphone"
-                          style={{ width: " 500px;" }}
-                        />
-                      </div>
-                      <label>
-                        <h4>Email :</h4>
-                      </label>
-                      <div className="form-group">
-                        <input
-                          type="email"
-                          className="form-control"
-                          placeholder="Email"
-                          style={{ width: " 500px;" }}
-                        />
-                      </div>
-                      <label>
-                        <h4>Non d'agent :</h4>
-                      </label>
-                      <div className="form-group">
-                        <select id="pet-select" style={{ width: " 554px" }}>
-                          <option value="">
-                            s'il vous plaît choisissez un agent pour vous aider
-                          </option>
-                          <option value="dog">agent1</option>
-                          <option value="cat">agent2</option>
-                          <option value="hamster">agent3</option>
-                        </select>
-                      </div>
-                      <label>
-                        <h4>Message :</h4>
-                      </label>
-                      <div className="form-group">
-                        <textarea
-                          className="form-control"
-                          placeholder="Message"
-                          defaultValue={""}
-                          style={{ width: " 500px;" }}
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="btn-blue uppercase border_radius"
-                        defaultValue="Envoyer"
-                      >
-                        Envoyer
-                      </button>
-                    </form>
-                  </div> */}
-                  <ListConseil />
+                 
+                  <FormulaireConseil/>
                   <div
                     className="col-sm6 bottom-40 text-it-p"
                     style={{ marginRight: "37px;" }}

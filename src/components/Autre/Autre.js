@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Autre.css";
-import ListeAutre from "./listeAutre";
+import AutreSevices from "./autreServices";
 
 class Autre extends Component {
   render() {
@@ -14,80 +14,8 @@ class Autre extends Component {
                 <div className="col-sm-12" style={{ marginTop: "390px" }}>
                   <div className="text-center">
                     <div className="row">
-                      <div className="col-sm-6 bottom40">
-                        <h3>Informations Perssonnelles</h3>
-                        <form className="callus" style={{ paddingTop: "25px" }}>
-                          <ListeAutre />
-                          {/* <div className="form-group -animated">
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Nom & prénom "
-                              style={{
-                                backgroundColor: "#ffffff0a",
-                                fontSize: "18px",
-                                color: "white"
-                              }}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <input
-                              type="adress"
-                              className="form-control"
-                              placeholder="Adrresse Email"
-                              style={{
-                                backgroundColor: "#ffffff0a",
-                                fontSize: "18px",
-                                color: "white"
-                              }}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <input
-                              type="tel"
-                              className="form-control"
-                              placeholder="Téléphone "
-                              style={{
-                                backgroundColor: " #ffffff0a",
-                                fontSize: "18px",
-                                color: "white"
-                              }}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <input
-                              type="tel"
-                              className="form-control"
-                              placeholder="Titre de Sevice demandé "
-                              style={{
-                                backgroundColor: " #ffffff0a",
-                                fontSize: "18px",
-                                color: "white"
-                              }}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <textarea
-                              className="form-control"
-                              placeholder="Description"
-                              style={{
-                                backgroundColor: " #ffffff0a",
-                                fontSize: "18px",
-                                color: "white"
-                              }}
-                              defaultValue={""}
-                            />
-                          </div> */}
-                        </form>
-                        <a
-                          href="#."
-                          className="btn-blue border_radius"
-                          style={{ marginRight: "613px", width: "590px" }}
-                        >
-                          Soumettre
-                        </a>
-                      </div>
-                      <div className="col-sm-6 bottom40">
+                      <AutreSevices />
+                  <div className="col-sm-6 bottom40">
                         <h3>A propos ce service</h3>
 
                         <div className="paragraph">

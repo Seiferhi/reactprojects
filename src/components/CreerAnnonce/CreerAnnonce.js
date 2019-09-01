@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import TextEditor from "./textEditor";
 class CreerAnnonce extends Component {
   render() {
     return (
@@ -251,6 +251,7 @@ class CreerAnnonce extends Component {
                       </h3>
                       <textarea id="txtEditor" defaultValue={""} />
                     </div>
+                    {/* <TextEditor/> */}
 
                     <div className="col-sm-12">
                       <h3 className="bottom15 margin40">Options</h3>
