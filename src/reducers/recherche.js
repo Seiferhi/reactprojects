@@ -5,54 +5,51 @@ var initialState = {
       parag:
         "orem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam power nonummy nibh tempor cum solutanobis eleifend option congue nihil imperdiet doming…",
       statut: "For Rent",
-      prix: "$8,600 Per Month",
+      prix: "8600",
       tv: "Tv Lounge",
-      salleDeBain: "3 Bedrooms",
-      chambre: "2 bathrooms",
-      Garage: "1 Garage",
-      surface: "4800 sq ft"
+      salleDeBain: "3",
+      chambre: "2",
+      Garage: "1",
+      surface: "4800"
     },
     {
       titre: "Unique Villa With Private Beach",
       parag:
         "orem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam power nonummy nibh tempor cum solutanobis eleifend option congue nihil imperdiet doming…",
       statut: "For Rent",
-      prix: "$8,600 Per Month",
+      prix: "12000",
       statut: "For Rent",
-      prix: "$8,600 Per Month",
       tv: "Tv Lounge",
-      salleDeBain: "3 Bedrooms",
-      chambre: "2 bathrooms",
-      Garage: "1 Garage",
-      surface: "4800 sq ft"
+      salleDeBain: "3",
+      chambre: "2",
+      Garage: "1",
+      surface: "4800"
     },
     {
       titre: "Unique Villa With Private Beach",
       parag:
         "orem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam power nonummy nibh tempor cum solutanobis eleifend option congue nihil imperdiet doming…",
       statut: "For Rent",
-      prix: "$8,600 Per Month",
+      prix: "3000",
       statut: "For Rent",
-      prix: "$8,600 Per Month",
       tv: "Tv Lounge",
-      salleDeBain: "3 Bedrooms",
-      chambre: "2 bathrooms",
-      Garage: "1 Garage",
-      surface: "4800 sq ft"
+      salleDeBain: "3",
+      chambre: "2",
+      Garage: "1",
+      surface: "4800"
     },
     {
       titre: "Unique Villa With Private Beach",
       parag:
         "orem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam power nonummy nibh tempor cum solutanobis eleifend option congue nihil imperdiet doming…",
       statut: "For Rent",
-      prix: "$8,600 Per Month",
+      prix: "5000",
       statut: "For Rent",
-      prix: "$8,600 Per Month",
       tv: "Tv Lounge",
-      salleDeBain: "3 Bedrooms",
-      chambre: "2 bathrooms",
-      Garage: "1 Garage",
-      surface: "4800 sq ft"
+      salleDeBain: "3",
+      chambre: "2",
+      Garage: "2",
+      surface: "4800"
     }
   ]
 };

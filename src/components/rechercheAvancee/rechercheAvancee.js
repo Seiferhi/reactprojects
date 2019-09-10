@@ -8,14 +8,24 @@ import Statut from "./statut"
 import MinLit from "./minLit"
 import SalleDeBain from "./salleDeBain"
 import store from "../../store/index";
+import ListeBienRecomande from "../listeBienRecomande/listeBienRecomande";
+import axios from "axios";
+import ItemList from "../itemList/itemList";
+import BienRecherchee from "../BienRecherchee/BienRecherchee";
+import BienRecommande from "../bienRecomande/bienRecomande";
 class RechercheAvancee extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      paginationList: [],
+      nbrPages: 0,
+      showList: [],
+      filtredList: [],
       titre: '', region: '', categorie: '', statut: '', minLit: '',
-      salleDeBain: '', surfaceMin: '', surfaceMax: '', prix: 100
+      salleDeBain: '', surfaceMin: '', surfaceMax: '', prix: 100,
     }
+
   }
 
   sliderChange(value) {
@@ -32,16 +42,51 @@ class RechercheAvancee extends Component {
     });
   }
 
+
+  // filter = (liste) => {
+  //   const el = liste.filter(el => el.statut == this.state.statut && el.region == this.state.region);
+  //   return el;
+  // }
+
   search = () => {
-    console.log(this.state);
+    // console.log(this.state);
+    axios
+      .get("http://localhost:8080/bienImmobiliers/all")
+      .then(res => {
+        this.setState({ filtredList: res.data });
+        this.setState({
+          // Pagination
+          // Show only three item
+          showList: res.data.filter((el, index) => index < 3),
+          nbrPages: Math.ceil(this.state.filtredList.length / 3)
+
+        }, () => {
+          let pages = [];
+          for (let i = 0; i < this.state.nbrPages; i++) {
+            pages = [...pages, i];
+          }
+          this.setState({ paginationList: pages })
+
+        })
+
+      })
+      .catch(err => console.log(err.response.data));
+
     // Add search to redux store
-    this.props.addSearch(this.state);
+    // this.props.addSearch(this.state);
+  }
+
+  // For pagination
+  show = (index) => {
+    let result = this.state.filtredList.slice(index, index + 3);
+    this.setState({ showList: result });
   }
 
   render() {
     return (
       <div>
-        {/* <ul>
+        <div>
+          {/* <ul>
           Juste pour les test :
           {
             this.props.listes.map(el => {
@@ -49,167 +94,198 @@ class RechercheAvancee extends Component {
             })
           }
         </ul> */}
-        <form className="callus col-xs-12" onSubmit={e => { e.preventDefault(); }}  >
-          <div className="col-md-3 col-sm-6">
-            <div className="form-group">
-              <input
-                style={{ width: "100%" }}
-                type="text"
-                className="keyword-input"
-                placeholder="Mot clé"
-                name="titre"
-                value={this.state.titre}
-                onChange={this.handleInputChange} />
-
-            </div>
-          </div>
-          <div className="col-md-3 col-sm-6">
-            <div className="form-group">
-              <select name="region"
-                value={this.state.region}
-                onChange={this.handleInputChange}
-                style={{ width: "100%" }}>
-                <option>Toutes Les Régions</option>
-                <option>Ariana </option>
-                <option>Beja</option>
-                <option>Ben Arous</option>
-                <option>Bizerte</option>
-                <option>Gabes</option>
-                <option>Gafsa</option>
-                <option>Jendouba</option>
-                <option>Kairouan</option>
-                <option>Kasserine</option>
-                <option>Kebili</option>
-                <option>Kef</option>
-                <option>Mahdia</option>
-                <option>Mannouba</option>
-                <option>Medenine</option>
-                <option>Monastir</option>
-                <option>Nabeul</option>
-                <option>Sfax</option>
-                <option>Sidi Bouzid</option>
-                <option>Siliana</option>
-                <option>Sousse</option>
-                <option>Tataouine</option>
-                <option>Touzeur</option>
-                <option>Tunis</option>
-                <option>Zaghouan</option>
-              </select>
-            </div>
-            {/* <Regions /> */}
-          </div>
-          <div className="col-md-3 col-sm-6">
-            <div className="form-group">
-              <select
-                style={{ width: "100%" }}
-                name="categorie" value={this.state.categorie}
-                onChange={this.handleInputChange} >
-                <option>Toutes les Catégories</option>
-                <option>Appartement</option>
-                <option>Bureau</option>
-                <option>Local Commerciale</option>
-                <option>Maison </option>
-                <option>Résidence</option>
-                <option>Terre/Terrain</option>
-              </select>
-              {/* <Categories /> */}
-            </div>
-          </div>
-          <div className="col-md-3 col-sm-6">
-            <div className="form-group">
-              <select name="statut"
-                value={this.state.statut}
-                onChange={this.handleInputChange}
-                style={{ width: "100%" }}>
-                <option> Statut de bien</option>
-                <option>Acheter</option>
-                <option>Louer </option>
-              </select>
-            </div>
-            {/* <Statut /> */}
-          </div>
-          <div className="col-md-6">
+          <form className="callus col-xs-12" onSubmit={e => { e.preventDefault(); }}  >
             <div className="col-md-3 col-sm-6">
-              <div className=" form-group">
-                <select name="minLit"
-                  value={this.state.minLit}
+              <div className="form-group">
+                <input
+                  style={{ width: "100%" }}
+                  type="text"
+                  className="keyword-input"
+                  placeholder="Mot clé"
+                  name="titre"
+                  value={this.state.titre}
+                  onChange={this.handleInputChange} />
+
+              </div>
+            </div>
+            <div className="col-md-3 col-sm-6">
+              <div className="form-group">
+                <select name="region"
+                  value={this.state.region}
                   onChange={this.handleInputChange}
                   style={{ width: "100%" }}>
-                  <option className="active">Min Lits</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
+                  <option>Toutes Les Régions</option>
+                  <option>Ariana </option>
+                  <option>Beja</option>
+                  <option>Ben Arous</option>
+                  <option>Bizerte</option>
+                  <option>Gabes</option>
+                  <option>Gafsa</option>
+                  <option>Jendouba</option>
+                  <option>Kairouan</option>
+                  <option>Kasserine</option>
+                  <option>Kebili</option>
+                  <option>Kef</option>
+                  <option>Mahdia</option>
+                  <option>Mannouba</option>
+                  <option>Medenine</option>
+                  <option>Monastir</option>
+                  <option>Nabeul</option>
+                  <option>Sfax</option>
+                  <option>Sidi Bouzid</option>
+                  <option>Siliana</option>
+                  <option>Sousse</option>
+                  <option>Tataouine</option>
+                  <option>Touzeur</option>
+                  <option>Tunis</option>
+                  <option>Zaghouan</option>
                 </select>
               </div>
-              {/* <MinLit /> */}
+              {/* <Regions /> */}
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="form-group">
                 <select
-                  name="salleDeBain"
                   style={{ width: "100%" }}
-                  value={this.state.salleDeBain}
+                  name="categorie" value={this.state.categorie}
                   onChange={this.handleInputChange} >
-                  <option className="active">Salle de bain</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
+                  <option>Toutes les Catégories</option>
+                  <option>Appartement</option>
+                  <option>Bureau</option>
+                  <option>Local Commerciale</option>
+                  <option>Maison </option>
+                  <option>Résidence</option>
+                  <option>Terre/Terrain</option>
                 </select>
-                {/* <SalleDeBain /> */}
+                {/* <Categories /> */}
               </div>
             </div>
-            <div className="col-sm-6 col-md-3">
-              <div className=" form-group">
-                <input
-                  style={{ width: "100%" }}
-                  type="text"
-                  name="surfaceMin"
-                  value={this.state.surfaceMin}
+            <div className="col-md-3 col-sm-6">
+              <div className="form-group">
+                <select name="statut"
+                  value={this.state.statut}
                   onChange={this.handleInputChange}
-                  className="keyword-input"
-                  placeholder="Surface Min(m²)"
-                />
+                  style={{ width: "100%" }}>
+                  <option> Statut de bien</option>
+                  <option>A Vendre</option>
+                  <option>A louer </option>
+                </select>
               </div>
+              {/* <Statut /> */}
             </div>
-            <div className="col-sm-6 col-md-3">
+            <div className="col-md-6">
+              <div className="col-md-3 col-sm-6">
+                <div className=" form-group">
+                  <select name="minLit"
+                    value={this.state.minLit}
+                    onChange={this.handleInputChange}
+                    style={{ width: "100%" }}>
+                    <option className="active">Min Lits</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                  </select>
+                </div>
+                {/* <MinLit /> */}
+              </div>
+              <div className="col-md-3 col-sm-6">
+                <div className="form-group">
+                  <select
+                    name="salleDeBain"
+                    style={{ width: "100%" }}
+                    value={this.state.salleDeBain}
+                    onChange={this.handleInputChange} >
+                    <option className="active">Salle de bain</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                  </select>
+                  {/* <SalleDeBain /> */}
+                </div>
+              </div>
+              <div className="col-sm-6 col-md-3">
+                <div className=" form-group">
+                  <input
+                    style={{ width: "100%" }}
+                    type="text"
+                    name="surfaceMin"
+                    value={this.state.surfaceMin}
+                    onChange={this.handleInputChange}
+                    className="keyword-input"
+                    placeholder="Surface Min(m²)"
+                  />
+                </div>
+              </div>
+              <div className="col-sm-6 col-md-3">
 
 
-              <div className=" form-group">
-                <input
-                  name="surfaceMax"
-                  style={{ width: "100%" }}
-                  type="text"
-                  value={this.state.surfaceMax}
-                  onChange={this.handleInputChange}
-                  className="keyword-input"
-                  placeholder="Surface Max(m²)"
-                />
+                <div className=" form-group">
+                  <input
+                    name="surfaceMax"
+                    style={{ width: "100%" }}
+                    type="text"
+                    value={this.state.surfaceMax}
+                    onChange={this.handleInputChange}
+                    className="keyword-input"
+                    placeholder="Surface Max(m²)"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className=" col-md-6">
-            <div className="col-md-8">
-              <div className="single-query-slider">
-                {/* slider */}
-                <Horizontal sliderChange={value => this.sliderChange(value)} />
+            <div className=" col-md-6">
+              <div className="col-md-8">
+                <div className="single-query-slider">
+                  {/* slider */}
+                  <Horizontal sliderChange={value => this.sliderChange(value)} />
+                </div>
               </div>
-            </div>
-            <div className="col-md-4 text-right form-group">
-              <button type="button" onClick={this.search} className="btn-blue border_radius top15" >
-                Recherche
+              <div className="col-md-4 text-right form-group">
+                <button type="button" onClick={this.search} className="btn-blue border_radius top15" >
+                  Recherche
                 </button>
+              </div>
+            </div>
+
+          </form>
+
+        </div >
+        <section id="property" className="padding">
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12">
+                <h2 className="uppercase">Resultat de recherhce </h2>
+                <p className="heading_space"> Nous sommes fiers de vous présenter certaines des meilleures maisons, appartements, bureaux , avec les meilleurs prix.
+                </p>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="row">
+                {this.state.showList.map(el => <BienRecherchee item={el} />)}
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-12 text-center top15">
+                <ul className="pager">
+
+                  {this.state.paginationList.map(el => {
+                    return <li><a onClick={() => this.show(el * 3)}>{el}</a></li>
+                  }
+                  )}
+
+                </ul>
+              </div>
             </div>
           </div>
+        </section>
 
-        </form>
       </div >
-
     );
   }
 };
