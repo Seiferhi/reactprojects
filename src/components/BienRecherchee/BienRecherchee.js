@@ -17,6 +17,7 @@ class BienRecherchee extends Component {
                         <h3 className="bottom15">
                             <a href="property_detail1.html">{this.props.item.titre}</a>
                         </h3>
+                        <h5>{this.props.item.statut}</h5>
                         <p>{this.props.item.description}</p>
                         <a href="property_detail1.html" className="btn-more">
                             <i>

@@ -18,12 +18,14 @@ class RechercheAvancee extends Component {
     super(props);
 
     this.state = {
+      searched: false,
+      ecart: "",
       paginationList: [],
       nbrPages: 0,
       showList: [],
       filtredList: [],
-      titre: '', region: '', categorie: '', statut: '', minLit: '',
-      salleDeBain: '', surfaceMin: '', surfaceMax: '', prix: 100,
+      titre: "", region: "", categorie: "", statut: "", minLit: "",
+      salleDeBain: "", surfaceMin: "", surfaceMax: "", prix: "",
     }
 
   }
@@ -42,22 +44,33 @@ class RechercheAvancee extends Component {
     });
   }
 
+  filtering = (bienImonilier, recherche) => {
+    if (recherche.ecart != "") recherche.ecart = +recherche.ecart;
+    else recherche.ecart = 0;
+    return (
+      (recherche.region ? bienImonilier.region == recherche.region : true) &&
+      (recherche.statut ? bienImonilier.statut == recherche.statut : true) &&
+      (recherche.categorie ? bienImonilier.categories == recherche.categorie : true) &&
+      (recherche.surfaceMin ? bienImonilier.surface >= recherche.surfaceMin : true) &&
+      (recherche.surfaceMax ? bienImonilier.surface <= recherche.surfaceMax : true) &&
+      (recherche.prix ? (bienImonilier.prix >= Math.abs(+recherche.prix - recherche.ecart) && (bienImonilier.prix <= Math.abs(+recherche.prix + recherche.ecart))) : true)
 
-  // filter = (liste) => {
-  //   const el = liste.filter(el => el.statut == this.state.statut && el.region == this.state.region);
-  //   return el;
-  // }
+    )
+  }
 
   search = () => {
-    // console.log(this.state);
+
     axios
       .get("http://localhost:8080/bienImmobiliers/all")
       .then(res => {
-        this.setState({ filtredList: res.data });
+        let result = res.data.filter(el => this.filtering(el, this.state));
+        this.setState({
+          filtredList: result
+        });
         this.setState({
           // Pagination
           // Show only three item
-          showList: res.data.filter((el, index) => index < 3),
+          showList: this.state.filtredList.filter((el, index) => index < 3),
           nbrPages: Math.ceil(this.state.filtredList.length / 3)
 
         }, () => {
@@ -67,7 +80,9 @@ class RechercheAvancee extends Component {
           }
           this.setState({ paginationList: pages })
 
-        })
+        });
+        this.setState({ searched: true });
+
 
       })
       .catch(err => console.log(err.response.data));
@@ -114,7 +129,7 @@ class RechercheAvancee extends Component {
                   value={this.state.region}
                   onChange={this.handleInputChange}
                   style={{ width: "100%" }}>
-                  <option>Toutes Les Régions</option>
+                  <option value="">Toutes Les Régions</option>
                   <option>Ariana </option>
                   <option>Beja</option>
                   <option>Ben Arous</option>
@@ -149,11 +164,11 @@ class RechercheAvancee extends Component {
                   style={{ width: "100%" }}
                   name="categorie" value={this.state.categorie}
                   onChange={this.handleInputChange} >
-                  <option>Toutes les Catégories</option>
+                  <option value="">Toutes les Catégories</option>
                   <option>Appartement</option>
                   <option>Bureau</option>
                   <option>Local Commerciale</option>
-                  <option>Maison </option>
+                  <option>Maison</option>
                   <option>Résidence</option>
                   <option>Terre/Terrain</option>
                 </select>
@@ -166,9 +181,9 @@ class RechercheAvancee extends Component {
                   value={this.state.statut}
                   onChange={this.handleInputChange}
                   style={{ width: "100%" }}>
-                  <option> Statut de bien</option>
+                  <option value=""> Statut de bien</option>
                   <option>A Vendre</option>
-                  <option>A louer </option>
+                  <option>A louer</option>
                 </select>
               </div>
               {/* <Statut /> */}
@@ -177,10 +192,11 @@ class RechercheAvancee extends Component {
               <div className="col-md-3 col-sm-6">
                 <div className=" form-group">
                   <select name="minLit"
+                    disabled={this.state.categorie != 'Résidence' && this.state.categorie != 'Maison'}
                     value={this.state.minLit}
                     onChange={this.handleInputChange}
                     style={{ width: "100%" }}>
-                    <option className="active">Min Lits</option>
+                    <option className="active" value="">Min Lits</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -194,11 +210,12 @@ class RechercheAvancee extends Component {
               <div className="col-md-3 col-sm-6">
                 <div className="form-group">
                   <select
+                    disabled={this.state.categorie != 'Résidence' && this.state.categorie != 'Maison'}
                     name="salleDeBain"
                     style={{ width: "100%" }}
                     value={this.state.salleDeBain}
                     onChange={this.handleInputChange} >
-                    <option className="active">Salle de bain</option>
+                    <option className="active" value="">Salle de bain</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -239,12 +256,44 @@ class RechercheAvancee extends Component {
               </div>
             </div>
             <div className=" col-md-6">
-              <div className="col-md-8">
-                <div className="single-query-slider">
-                  {/* slider */}
-                  <Horizontal sliderChange={value => this.sliderChange(value)} />
+              <div className="col-md-4 form-group">
+                <input
+                  name="prix"
+                  style={{ width: "100%" }}
+                  type="text"
+                  value={this.state.prix}
+                  onChange={this.handleInputChange}
+                  className="keyword-input"
+                  placeholder="Prix"
+                />
+              </div>
+              <div className="col-md-4">
+                <div className="form-group">
+                  <select
+                    disabled={!this.state.prix}
+                    name="ecart"
+                    style={{ width: "100%" }}
+                    value={this.state.ecart}
+                    onChange={this.handleInputChange} >
+                    <option className="active" value="0">+/-</option>
+                    <option>50</option>
+                    <option>100</option>
+                    <option>200</option>
+                    <option>500</option>
+                    <option>1000</option>
+                    <option>10000</option>
+                    <option>50000</option>
+                    <option>100000</option>
+                  </select>
+                  {/* <SalleDeBain /> */}
                 </div>
               </div>
+
+              {/* <div className="single-query-slider"> */}
+              {/* slider */}
+              {/* <Horizontal sliderChange={value => this.sliderChange(value)} /> */}
+              {/* </div> */}
+
               <div className="col-md-4 text-right form-group">
                 <button type="button" onClick={this.search} className="btn-blue border_radius top15" >
                   Recherche
@@ -261,13 +310,18 @@ class RechercheAvancee extends Component {
               <div className="col-xs-12">
                 <h2 className="uppercase">Resultat de recherhce </h2>
                 <p className="heading_space"> Nous sommes fiers de vous présenter certaines des meilleures maisons, appartements, bureaux , avec les meilleurs prix.
+                {this.state.filtredList.length > 0 ? <h2 className="uppercase text-center">
+                    {this.state.filtredList.length} item{this.state.filtredList.length > 1 ? "s" : null} found </h2>
+                    : null}
                 </p>
               </div>
             </div>
 
             <div className="row">
               <div className="row">
-                {this.state.showList.map(el => <BienRecherchee item={el} />)}
+                {this.state.showList.length > 0 ? this.state.showList.map(el => <BienRecherchee item={el} />) : this.state.searched ?
+                  <div className="alert alert-danger text-center">No item found</div> : null
+                }
               </div>
             </div>
             <div className="row">
